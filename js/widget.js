@@ -6,7 +6,20 @@ xhr.onreadystatechange = function () {
     var employees = JSON.parse(xhr.responseText);
     console.log(typeof employees);
     console.log(employees);
+    var statusHTML = '<ul class="bulleted">';
+    for (var i = 0; i < employees.length; i += 1) {
+      if(employees[i].inoffice === true){
+        statusHTML += '<li class="in">';
+      } else {
+        statusHTML += '<li class="out">';
+      }
+      statusHTML += employees[i].name;
+      statusHTML += '</li>';
+    }
+    statusHTML += '</ul>';
+      console.log(statusHTML);
   }
+
 };
 xhr.open('GET', 'data/employees.json');
 xhr.send();
